@@ -1,1 +1,1 @@
-[{"id":7,"title":"Captain","description":"Thunder hammer\nStormshield\nJump pack","dueDate":"0001-01-01","completed":true},{"id":8,"title":"Chaplain","description":"Powerfist","dueDate":"70","completed":false}]
+[{"id":8,"title":"Chaplain","description":"Powerfist","points":"70","completed":false},{"id":9,"title":"Captain","description":"Thunderhammer\nStormshield\nJumppack","points":"125","completed":false}]
