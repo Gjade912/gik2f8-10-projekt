@@ -135,13 +135,13 @@ function renderList() {
 
 function renderTask({ id, title, description, dueDate, completed }) {
   let html = `
-    <li class="select-none mt-2 py-2 border-b border-amber-300">
+    <li class="select-none mt-2 py-2 border-b border-[#9a1115]">
       <div class="flex items-center">
-        <h3 class="mb-3 flex-1 text-xl font-bold text-pink-800 uppercase">${title}</h3>
+        <h3 class="mb-3 flex-1 text-xl font-bold text-[#9a1115] uppercase">${title}</h3>
         <div>
           <span>${dueDate}</span>
-          <button onclick="deleteTask(${id})" class="inline-block bg-amber-500 text-xs text-amber-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>
-          <input type="checkbox" onchange="updateTask(${id}, this.checked)" class="appearance-none inline-block bg-amber-500 text-xs text-amber-900 border border-white px-2 py-1 rounded-md ml-2 checked:bg-blue-500"`;
+          <button onclick="deleteTask(${id})" class="inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-3 py-1 rounded-md ml-2">Ta bort</button>
+          <input type="checkbox" onchange="updateTask(${id}, this.checked)" class="appearance-none inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-2 py-1 rounded-md ml-2 checked:bg-blue-500"`;
           
   if (completed == true){
     html += `checked`
