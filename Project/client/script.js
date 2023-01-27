@@ -5,8 +5,8 @@ todoForm.description.addEventListener('input', (e) => validateField(e.target));
 todoForm.description.addEventListener('blur', (e) => validateField(e.target));
 
 
-todoForm.dueDate.addEventListener('input', (e) => validateField(e.target));
-todoForm.dueDate.addEventListener('blur', (e) => validateField(e.target));
+todoForm.points.addEventListener('keyup', (e) => validateField(e.target));
+todoForm.points.addEventListener('blur', (e) => validateField(e.target));
 
 
 todoForm.addEventListener('submit', onSubmit);
@@ -98,7 +98,7 @@ function saveTask() {
   const task = {
     title: todoForm.title.value,
     description: todoForm.description.value,
-    dueDate: todoForm.dueDate.value,
+    dueDate: todoForm.points.value,
     completed: false
   };
 
@@ -120,11 +120,11 @@ function renderList() {
 
     todoListElement.innerHTML = '';
 
-    tasks.sort(function(a, b){
+    /* tasks.sort(function(a, b){
       if(a.dueDate < b.dueDate) { return -1; }
       if(a.dueDate > b.dueDate) { return 1; }
       return 0;
-    })
+    }) */
     if (tasks && tasks.length > 0) {
       tasks.forEach((task) => {
         todoListElement.insertAdjacentHTML('beforeend', renderTask(task));

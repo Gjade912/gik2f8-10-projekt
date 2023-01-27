@@ -22,13 +22,13 @@
     <section class="flex gap-10 w-full xl:w-4/5 mx-2 xl:mx-auto bg-[#bbc6c9] bg-opacity-50 p-5 rounded-lg">
       <!-- Sektion för formuläret -->
       <section class="flex-1">
-        <h2 class="mb-6 text-3xl text-[#9a1115]">Lägg till en uppgift</h2>
+        <h2 class="mb-6 text-3xl text-[#9a1115]">Add a unit</h2>
         <!-- Formuläret är döpt till todoForm och det namnet kan användas för att söka fram formuläret direkt i JavaScript-koden. -->
         <form id="todoForm"
               name="todoForm">
           <section class="mb-2">
             <label class="block pr-5 mb-2 text-xl text-[#9a1115]"
-                   for="title">Titel</label>
+                   for="title">Unit Name</label>
             <!-- Detta p-element är dolt från början med hjälp av tailwinds klass "hidden". Det kommer sedan att visas vid valideringsfel.
             
             P-elementet är previousSiblingElement till inputfälten. Det gäller för alla efterföljande p-element som ligger innan ett input-fält. Detta faktum används i script.js när ett valideringsmeddelande ska sättas här. -->
@@ -45,7 +45,7 @@
           <!-- Följande sektioner är likadana för övriga fält i formuläret; description och dueDate -->
           <section class="mb-2">
             <label class="block pr-5 mb-2 text-xl text-[#9a1115]"
-                   for="description">Beskrivning</label>
+                   for="description">Equipment</label>
             <p class="message text-sm text-[#9a1115] mb-2 hidden">
               Error message
             </p>
@@ -57,26 +57,28 @@
           </section>
           <section class="mb-2">
             <label class="block pr-5 mb-2 text-xl text-[#9a1115]"
-                   for="title">Utförd senast</label>
+                   for="title">Unit Points</label>
+            
             <p class="message text-sm text-[#9a1115] mb-2 hidden">
               Error message
             </p>
-            <input type="date"
-                   id="dueDate"
-                   name="dueDate"
-                   class="w-full rounded-md border-[#9a1115] border-2 focus-within:outline-none focus:border-[#9a1115] px-4 py-2 text-[#9a1115]" />
+            
+            <input type="number"
+                   id="points"
+                   name="points"
+                   class="w-full rounded-md border-[#9a1115] border-2 focus-within:outline-none focus:border-[#9a1115] px-4 py-2" />
           </section>
           <!-- Knappen är av typen submit för att den ska vara knuten till formulärets submit-event.  -->
           <button name="submitTodoForm"
                   class="rounded-md bg-[#9a1115] hover:bg-[#9a1115] px-4 py-1 text-[#bbc6c9]"
                   type="submit">
-            Spara
+            Save
           </button>
         </form>
       </section>
       <!-- Sektion där listan med uppgifter ska bo. Placeras bredvid formuläret. -->
       <section class="flex-1 px-5">
-        <h2 class="mb-6 text-3xl text-[#9a1115]">Alla uppgifter</h2>
+        <h2 class="mb-6 text-3xl text-[#9a1115]">Full List</h2>
         <!-- Ul-element som kommer att fyllas på dynamiskt med li-element för varje uppgift i listan -->
         <ul id="todoList">
           <!-- Allt innanför här ska skapas dynamiskt med JavaScript, så se till att inget list-element läggs till här i denna HTML-fil.  -->
