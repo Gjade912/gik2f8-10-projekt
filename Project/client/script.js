@@ -8,8 +8,8 @@ unitForm.equipment.addEventListener('blur', (e) => validateField(e.target));
 unitForm.points.addEventListener('keyup', (e) => validateField(e.target));
 unitForm.points.addEventListener('blur', (e) => validateField(e.target));
 
-unitForm.role.addEventListener('keyup', (e) => validateField(e.target));
-unitForm.role.addEventListener('blur', (e) => validateField(e.target));
+unitForm.slot.addEventListener('keyup', (e) => validateField(e.target));
+unitForm.slot.addEventListener('blur', (e) => validateField(e.target));
 
 unitForm.addEventListener('submit', onSubmit);
 
@@ -19,6 +19,7 @@ const armyListElement = document.getElementById('armyList');
 let unitValid = true;
 let equipmentValid = true;
 let pointsValid = true;
+let slotValid = true;
 
 
 const api = new Api('http://localhost:5000/tasks');
@@ -74,6 +75,21 @@ function validateField(field) {
       }
       break;
     }
+
+    case 'slot': {
+      
+      if (value.length === 0) {
+       
+        slotValid = false;
+        validationMessage = "The field 'Unit Slot' is obligatory.";
+      } else if (isASlot(value)) {
+        slotValid = false;
+        validationMessage = "The given value is not a valid slot.";
+      } else {
+        slotValid = true;
+      }
+      break;
+    }
   }
 
   field.previousElementSibling.innerText = validationMessage;
@@ -81,11 +97,23 @@ function validateField(field) {
   field.previousElementSibling.classList.remove('hidden');
 }
 
+const slotsElement = document.getElementById('slots').options;
+
+function isASlot(value){
+  const result = true;
+  for (i=0; i<slotsElement.length; i++) {
+    if (slotsElement[i].value == value){
+      result = false;
+    }
+  };
+  return result;
+}
+
 function onSubmit(e) {
 
   e.preventDefault();
   
-  if (unitValid && equipmentValid && pointsValid) {
+  if (unitValid && equipmentValid && pointsValid && slotValid) {
     
     console.log('Submit');
 
@@ -101,7 +129,7 @@ function saveTask() {
     unit: unitForm.unit.value,
     equipment: unitForm.equipment.value,
     points: unitForm.points.value,
-    role: unitForm.role.value,
+    slot: unitForm.slot.value,
     completed: false
   };
 
