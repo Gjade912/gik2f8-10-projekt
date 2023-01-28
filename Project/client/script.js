@@ -1,18 +1,20 @@
-todoForm.unit.addEventListener('keyup', (e) => validateField(e.target));
-todoForm.unit.addEventListener('blur', (e) => validateField(e.target));
+unitForm.unit.addEventListener('keyup', (e) => validateField(e.target));
+unitForm.unit.addEventListener('blur', (e) => validateField(e.target));
 
-todoForm.equipment.addEventListener('input', (e) => validateField(e.target));
-todoForm.equipment.addEventListener('blur', (e) => validateField(e.target));
-
-
-todoForm.points.addEventListener('keyup', (e) => validateField(e.target));
-todoForm.points.addEventListener('blur', (e) => validateField(e.target));
+unitForm.equipment.addEventListener('input', (e) => validateField(e.target));
+unitForm.equipment.addEventListener('blur', (e) => validateField(e.target));
 
 
-todoForm.addEventListener('submit', onSubmit);
+unitForm.points.addEventListener('keyup', (e) => validateField(e.target));
+unitForm.points.addEventListener('blur', (e) => validateField(e.target));
+
+unitForm.role.addEventListener('keyup', (e) => validateField(e.target));
+unitForm.role.addEventListener('blur', (e) => validateField(e.target));
+
+unitForm.addEventListener('submit', onSubmit);
 
 
-const todoListElement = document.getElementById('todoList');
+const armyListElement = document.getElementById('armyList');
 
 let unitValid = true;
 let equipmentValid = true;
@@ -96,9 +98,10 @@ function onSubmit(e) {
 function saveTask() {
   
   const task = {
-    unit: todoForm.unit.value,
-    equipment: todoForm.equipment.value,
-    points: todoForm.points.value,
+    unit: unitForm.unit.value,
+    equipment: unitForm.equipment.value,
+    points: unitForm.points.value,
+    role: unitForm.role.value,
     completed: false
   };
 
@@ -118,7 +121,7 @@ function renderList() {
 
   api.getAll().then((tasks) => {
 
-    todoListElement.innerHTML = '';
+    armyListElement.innerHTML = '';
 
     /* tasks.sort(function(a, b){
       if(a.points < b.points) { return -1; }
@@ -127,7 +130,7 @@ function renderList() {
     }) */
     if (tasks && tasks.length > 0) {
       tasks.forEach((task) => {
-        todoListElement.insertAdjacentHTML('beforeend', renderTask(task));
+        armyListElement.insertAdjacentHTML('beforeend', renderTask(task));
       });
     }
   });

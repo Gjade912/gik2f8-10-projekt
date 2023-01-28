@@ -24,8 +24,8 @@
       <section class="flex-1">
         <h2 class="mb-6 text-3xl text-[#9a1115]">Add a unit</h2>
 
-        <form id="todoForm"
-              name="todoForm">
+        <form id="unitForm" name="unitForm">
+          
           <section class="mb-2">
             <label class="block pr-5 mb-2 text-xl text-[#9a1115]"
                    for="title">Unit Name</label>
@@ -47,11 +47,12 @@
               Error message
             </p>
             <textarea maxlength="500"
-                      rows="5"
+                      rows="3"
                       id="equipment"
                       name="equipment"
                       class="resize-none w-full rounded-md border-[#9a1115] border-2 focus-within:outline-none focus:border-[#9a1115] px-4 py-2"></textarea>
           </section>
+
           <section class="mb-2">
             <label class="block pr-5 mb-2 text-xl text-[#9a1115]"
                    for="title">Unit Points</label>
@@ -65,8 +66,39 @@
                    name="points"
                    class="w-full rounded-md border-[#9a1115] border-2 focus-within:outline-none focus:border-[#9a1115] px-4 py-2" />
           </section>
+
+          <section class="mb-2">
+            <label class="block pr-5 mb-2 text-xl text-[#9a1115]"
+                   for="title">Unit Role</label>
+
+            <p class="message text-sm text-[#9a1115] mb-2 hidden">
+              Error message
+            </p>
+            
+            <input type="text"
+                   id="role"
+                   name="role"
+                   list="Slots"
+                   class="w-full rounded-md border-[#9a1115] border-2 focus-within:outline-none focus:border-[#9a1115] px-4 py-2" />
+                   <datalist id="Slots">
+                    <option value="HQ"></option>
+                    <option value="Troops"></option>
+                    <option value="Elites"></option>
+                    <option value="Fast Attack"></option>
+                    <option value="Heavy Support"></option>
+                    <option value="Lord of War"></option>
+                    <option value="Flyer"></option>
+                    <option value="Fortification"></option>
+                    <option value="Dedicated Transport"></option>
+                  </datalist>
+          
+          </section>
+
+
+
+          
           <!-- Knappen är av typen submit för att den ska vara knuten till formulärets submit-event.  -->
-          <button name="submitTodoForm"
+          <button name="submitUnitForm"
                   class="rounded-md bg-[#9a1115] hover:bg-[#9a1115] px-4 py-1 text-[#bbc6c9]"
                   type="submit">
             Save
@@ -77,7 +109,7 @@
       <section class="flex-1 px-5">
         <h2 class="mb-6 text-3xl text-[#9a1115]">Full List</h2>
         <!-- Ul-element som kommer att fyllas på dynamiskt med li-element för varje uppgift i listan -->
-        <ul id="todoList">
+        <ul id="armyList">
           <!-- Allt innanför här ska skapas dynamiskt med JavaScript, så se till att inget list-element läggs till här i denna HTML-fil.  -->
         </ul>
       </section>
