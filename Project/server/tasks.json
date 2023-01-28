@@ -1,1 +1,1 @@
-[{"id":8,"title":"Chaplain","description":"Powerfist","points":"70","completed":false},{"id":9,"title":"Captain","description":"Thunderhammer\nStormshield\nJumppack","points":"125","completed":false}]
+[{"id":8,"unit":"Chaplain","equipment":"Powerfist","points":"70","completed":false},{"id":9,"unit":"Captain","equipment":"Thunderhammer\nStormshield\nJumppack","points":"125","completed":false}]

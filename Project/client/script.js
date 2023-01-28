@@ -1,8 +1,8 @@
-todoForm.title.addEventListener('keyup', (e) => validateField(e.target));
-todoForm.title.addEventListener('blur', (e) => validateField(e.target));
+todoForm.unit.addEventListener('keyup', (e) => validateField(e.target));
+todoForm.unit.addEventListener('blur', (e) => validateField(e.target));
 
-todoForm.description.addEventListener('input', (e) => validateField(e.target));
-todoForm.description.addEventListener('blur', (e) => validateField(e.target));
+todoForm.equipment.addEventListener('input', (e) => validateField(e.target));
+todoForm.equipment.addEventListener('blur', (e) => validateField(e.target));
 
 
 todoForm.points.addEventListener('keyup', (e) => validateField(e.target));
@@ -14,8 +14,8 @@ todoForm.addEventListener('submit', onSubmit);
 
 const todoListElement = document.getElementById('todoList');
 
-let titleValid = true;
-let descriptionValid = true;
+let unitValid = true;
+let equipmentValid = true;
 let pointsValid = true;
 
 
@@ -31,32 +31,32 @@ function validateField(field) {
 
   switch (name) {
 
-    case 'title': {
+    case 'unit': {
 
       if (value.length < 2) {
         
-        titleValid = false;
+        unitValid = false;
         validationMessage = "The field 'Unit Name' must have at minimum 2 characters.";
       } else if (value.length > 100) {
        
-        titleValid = false;
+        unitValid = false;
         validationMessage =
           "The field 'Unit Name' can't have more then 100 characters.";
       } else {
        
-        titleValid = true;
+        unitValid = true;
       }
       break;
     }
     
-    case 'description': {
+    case 'equipment': {
       
       if (value.length > 500) {
-        descriptionValid = false;
+        equipmentValid = false;
         validationMessage =
           "The field 'Equipment' can't have more then 500 characters.";
       } else {
-        descriptionValid = true;
+        equipmentValid = true;
       }
       break;
     }
@@ -66,7 +66,7 @@ function validateField(field) {
       if (value.length === 0) {
        
         pointsValid = false;
-        validationMessage = "The field points is obligatory.";
+        validationMessage = "The field 'Unit Points' is obligatory.";
       } else {
         pointsValid = true;
       }
@@ -83,7 +83,7 @@ function onSubmit(e) {
 
   e.preventDefault();
   
-  if (titleValid && descriptionValid && pointsValid) {
+  if (unitValid && equipmentValid && pointsValid) {
     
     console.log('Submit');
 
@@ -96,8 +96,8 @@ function onSubmit(e) {
 function saveTask() {
   
   const task = {
-    title: todoForm.title.value,
-    description: todoForm.description.value,
+    unit: todoForm.unit.value,
+    equipment: todoForm.equipment.value,
     points: todoForm.points.value,
     completed: false
   };
@@ -133,11 +133,11 @@ function renderList() {
   });
 }
 
-function renderTask({ id, title, description, points, completed }) {
+function renderTask({ id, unit, equipment, points, completed }) {
   let html = `
     <li class="select-none mt-2 py-2 border-b border-[#9a1115]">
       <div class="flex items-center">
-        <h3 class="mb-3 flex-1 text-xl font-bold text-[#9a1115] uppercase">${title}</h3>
+        <h3 class="mb-3 flex-1 text-xl font-bold text-[#9a1115] uppercase">${unit}</h3>
         <div>
           <span>${points}</span>
           <button onclick="deleteTask(${id})" class="inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-3 py-1 rounded-md ml-2">Remove</button>
@@ -151,9 +151,9 @@ function renderTask({ id, title, description, points, completed }) {
     </div>
   </div>`;
 
-  description &&
+  equipment &&
     (html += `
-      <p class="ml-8 mt-2 text-xs italic">${description}</p>
+      <p class="ml-8 mt-2 text-xs italic">${equipment}</p>
   `);
 
   html += `

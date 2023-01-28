@@ -23,7 +23,21 @@ app
   });
 
 
-
+app.get('/tasks/:id', async (req, res) => {
+  
+   try {
+    const id = req.params.id;
+    
+    const listBuffer = await fs.readFile('./tasks.json');
+    const currentTasks = JSON.parse(listBuffer);
+    const changeTask = currentTasks.filter((task) => task.id == id)
+    
+    res.send(changeTask);
+  } catch (error) {
+    
+    res.status(500).send({ error });
+  }
+});
 
 
 app.get('/tasks', async (req, res) => {
@@ -114,10 +128,7 @@ app.patch('/tasks', async (req, res) => {
     const check = req.body.completed
     
     const listBuffer = await fs.readFile('./tasks.json');
-    
     const currentTasks = JSON.parse(listBuffer);
-    
-
     const changeTask = currentTasks.filter((task) => task.id == id)
 
     changeTask[0].completed = check
