@@ -67,7 +67,7 @@ class Api {
       method: 'PATCH',
       body: JSON.stringify({
         id: id,
-        completed: check,
+        warlord: check,
       }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',

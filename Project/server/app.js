@@ -125,13 +125,13 @@ app.patch('/tasks', async (req, res) => {
   try {
     
     const id = req.body.id; 
-    const check = req.body.completed
+    const check = req.body.warlord;
     
     const listBuffer = await fs.readFile('./tasks.json');
     const currentTasks = JSON.parse(listBuffer);
-    const changeTask = currentTasks.filter((task) => task.id == id)
+    const changeTask = currentTasks.filter((task) => task.id == id);
 
-    changeTask[0].completed = check
+    changeTask[0].warlord = check;
 
     if (currentTasks.length > 0) {
       

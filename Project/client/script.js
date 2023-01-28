@@ -100,7 +100,7 @@ function validateField(field) {
 const slotsElement = document.getElementById('slots').options;
 
 function isASlot(value){
-  const result = true;
+  let result = true;
   for (i=0; i<slotsElement.length; i++) {
     if (slotsElement[i].value == value){
       result = false;
@@ -130,7 +130,7 @@ function saveTask() {
     equipment: unitForm.equipment.value,
     points: unitForm.points.value,
     slot: unitForm.slot.value,
-    completed: false
+    warlord: false
   };
 
   api.create(task).then((task) => {
@@ -151,20 +151,35 @@ function renderList() {
 
     armyListElement.innerHTML = '';
 
-    /* tasks.sort(function(a, b){
+    tasks.sort(function(a, b){
       if(a.points < b.points) { return -1; }
       if(a.points > b.points) { return 1; }
       return 0;
-    }) */
+    }) 
+
     if (tasks && tasks.length > 0) {
-      tasks.forEach((task) => {
-        armyListElement.insertAdjacentHTML('beforeend', renderTask(task));
-      });
+      
+      for (let i=0; i<slotsElement.length; i++) {
+        let breakLine = 
+        `<li class="select-none mt-2 py-2 border-b border-[#9a1115]">
+          <div class="flex items-center">
+            <h3 class="mb-3 text-xl font-bold text-[#9a1115] uppercase">${slotsElement[i].value}</h3>
+          </div>
+        </li>`;
+        armyListElement.insertAdjacentHTML('beforeend', breakLine);
+      
+      
+        tasks.forEach((task) => {
+          if (slotsElement[i].value == task.slot) {
+            armyListElement.insertAdjacentHTML('beforeend', renderTask(task));
+          }
+        });
+      }
     }
   });
 }
 
-function renderTask({ id, unit, equipment, points, completed }) {
+function renderTask({ id, unit, equipment, points, warlord }) {
   let html = `
     <li class="select-none mt-2 py-2 border-b border-[#9a1115]">
       <div class="flex items-center">
@@ -174,7 +189,7 @@ function renderTask({ id, unit, equipment, points, completed }) {
           <button onclick="deleteTask(${id})" class="inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-3 py-1 rounded-md ml-2">Remove</button>
           <input type="checkbox" onchange="updateTask(${id}, this.checked)" class="appearance-none inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-2 py-1 rounded-md ml-2 checked:bg-blue-500"`;
           
-  if (completed == true){
+  if (warlord == true){
     html += `checked`
   }
           
