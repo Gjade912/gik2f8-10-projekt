@@ -184,9 +184,9 @@ function renderList() {
     let endLine = 
       `<li class="select-none mt-3 py-2 border-b border-[#9a1115]">
         <div class="flex items-center">
-          <h3 class="mb-3 flex-1 text-xl font-bold text-[#9a1115] uppercase">Total Amount of Points:</h3>
+          <h3 class="mb-3 flex-1 text-xl font-bold text-[#9a1115] uppercase">Total Amount of Points: </h3>
           <div>
-           <span>${totalPoints}</span>
+           <span class="text-xl font-bold text-[#9a1115] uppercase">${totalPoints}</span>
           </div>
         </div>
       </li>`;
@@ -198,7 +198,7 @@ function renderTask({ id, unit, equipment, points, warlord }) {
   let html = `
     <li class="select-none mt-2 py-2 border-b border-[#9a1115]">
       <div class="flex items-center">
-        <h3 class="mb-3 flex-1 text-l font-bold text-[#a47552] uppercase">${unit}</h3>
+        <h3 class="mb-3 flex-1 text-l font-bold text-[#a47552] uppercase">&nbsp &nbsp ${unit}</h3>
         <div>
           <span>${points}</span>
           <button onclick="deleteTask(${id})" class="inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-3 py-1 rounded-md ml-2">Remove</button>
