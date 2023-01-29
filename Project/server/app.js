@@ -39,9 +39,7 @@ app.post('/tasks', async (req, res) => {
   try {
     
     const task = req.body;
-    
     const listBuffer = await fs.readFile('./tasks.json');
-   
     const currentTasks = JSON.parse(listBuffer);
     
     let maxTaskId = 1;
@@ -61,7 +59,6 @@ app.post('/tasks', async (req, res) => {
     const newTask = { id: maxTaskId + 1, ...task };
     
     const newList = currentTasks ? [...currentTasks, newTask] : [newTask];
-
     
     await fs.writeFile('./tasks.json', JSON.stringify(newList));
     
@@ -77,9 +74,7 @@ app.delete('/tasks/:id', async (req, res) => {
   try {
 
     const id = req.params.id;
-
     const listBuffer = await fs.readFile('./tasks.json');
-
     const currentTasks = JSON.parse(listBuffer);
 
     if (currentTasks.length > 0) {
