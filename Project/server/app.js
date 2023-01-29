@@ -119,19 +119,19 @@ app.delete('/tasks/:id', async (req, res) => {
 });
 
 app.patch('/tasks', async (req, res) => {
-  //res.status(418).send('Put anrop')
   
   console.log(req);
   try {
     
     const id = req.body.id; 
-    const check = req.body.warlord;
+    const check = req.body.check;
+    const button = req.body.button;
     
     const listBuffer = await fs.readFile('./tasks.json');
     const currentTasks = JSON.parse(listBuffer);
     const changeTask = currentTasks.filter((task) => task.id == id);
 
-    changeTask[0].warlord = check;
+    changeTask[0][button] = check;
 
     if (currentTasks.length > 0) {
       

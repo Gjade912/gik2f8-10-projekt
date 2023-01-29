@@ -59,7 +59,7 @@ class Api {
       .catch((err) => console.log(err));
   }
 
-  update(id, check) {
+  update(id, check, button) {
 
     console.log(`Updating task with id ${id}`);
 
@@ -67,7 +67,8 @@ class Api {
       method: 'PATCH',
       body: JSON.stringify({
         id: id,
-        warlord: check,
+        check: check,
+        button: button
       }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',

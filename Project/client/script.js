@@ -93,7 +93,6 @@ function validateField(field) {
   }
 
   field.previousElementSibling.innerText = validationMessage;
-  
   field.previousElementSibling.classList.remove('hidden');
 }
 
@@ -130,7 +129,8 @@ function saveTask() {
     equipment: unitForm.equipment.value,
     points: unitForm.points.value,
     slot: unitForm.slot.value,
-    warlord: false
+    warlord: false,
+    relic: false
   };
 
   api.create(task).then((task) => {
@@ -194,23 +194,29 @@ function renderList() {
   });
 }
 
-function renderTask({ id, unit, equipment, points, warlord }) {
+function renderTask({ id, unit, equipment, points, warlord, relic }) {
   let html = `
     <li class="select-none mt-2 py-2 border-b border-[#9a1115]">
       <div class="flex items-center">
         <h3 class="mb-3 flex-1 text-l font-bold text-[#a47552] uppercase">&nbsp &nbsp ${unit}</h3>
         <div>
-          <span>${points}</span>
-          <button onclick="deleteTask(${id})" class="inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-3 py-1 rounded-md ml-2">Remove</button>
-          <input type="checkbox" onchange="updateTask(${id}, this.checked)" class="appearance-none inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-2 py-1 rounded-md ml-2 checked:bg-blue-500"`;
           
+          
+          <input id="warlord" type="checkbox" onchange="updateTask(${id}, this.checked, this.id)" class="appearance-none inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-2 py-2 rounded-md ml-2 checked:bg-[#a47552]"`;       
   if (warlord == true){
     html += `checked`
-  }
-          
-  html+= `>
-    </div>
-  </div>`;
+  }        
+  html+= `> <label for="warlord">Warlord</label>`
+
+  html+=  `<input id="relic" type="checkbox" onchange="updateTask(${id}, this.checked, this.id)" class="appearance-none inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-2 py-2 rounded-md ml-2 checked:bg-[#a47552]"`;       
+    if (relic == true){
+      html += `checked`
+    }        
+    html+= `> <label for="warlord">Relic</label>
+        <button onclick="deleteTask(${id})" class="inline-block bg-[#9a1115] text-xs text-[#bbc6c9] border border-[#a47552] px-3 py-1 rounded-md ml-2">Remove</button>  
+        <span>${points}</span>
+      </div>
+    </div>`;
 
   equipment &&
     (html += `
@@ -228,9 +234,10 @@ function deleteTask(id) {
   });
 }
 
-function updateTask(id, checked) {
+function updateTask(id, checked, button) {
   console.log(checked)
-  api.update(id, checked).then((result) => {
+  console.log(button)
+  api.update(id, checked, button).then((result) => {
     renderList();
   });
 }
