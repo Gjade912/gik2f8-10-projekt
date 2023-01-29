@@ -1,7 +1,7 @@
 # Final Project for GIK2F8
 
 
-A simple army builder followign the basic rules for army building in warhammer 40000.
+A simple army builder followign the basic rules for army building in Warhammer 40000.
 
 Sadly it does not have saved points cost for units.
 
